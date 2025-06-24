@@ -1,4 +1,4 @@
 # RubyOS website
 placeholder
 <br>
-Credits to Gemini AI for website.
+Credits to Gemini AI for the website.
