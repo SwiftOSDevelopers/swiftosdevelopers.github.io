@@ -1,12 +1,29 @@
 <!DOCTYPE html>
-<html lang="en" data-theme="dark">
+<html lang="ru" data-theme="dark">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>RubyOS - The Ultimate Windows 10 LTSC 2021 Experience</title>
-    <meta name="description" content="Discover RubyOS based on a stripped version of Windows 10 LTSC 2021. A debloated, optimized, and private OS designed to revive older hardware and maximize performance.">
     
-    <link rel="icon" href="assets/logo.jpg" type="image/png">
+    <!-- =================================================================== -->
+    <!-- ===               SEO & SOCIALS FORGED BY HTCODER               === -->
+    <!-- =================================================================== -->
+    <title>RubyOS - The Ultimate Optimized Windows 10 for Gaming & Performance</title>
+    <meta name="description" content="Download RubyOS, a masterpiece built on Windows 10 LTSC 2021. Debloated, privacy-focused, and engineered to revive older PCs and maximize speed for modern gaming and development.">
+    <meta name="keywords" content="RubyOS, Windows 10 LTSC, optimized gaming OS, debloated Windows, lightweight OS, privacy focused, fast Windows, custom windows, winmastt">
+    <meta name="author" content="The RubyOS Project">
+    
+    <!-- IMPORTANT: Replace the URL with your final GitHub Pages URL -->
+    <link rel="canonical" href="https://YOUR-USERNAME.github.io/YOUR-REPOSITORY/">
+    
+    <!-- Social Media / Discord Preview Sigils -->
+    <meta property="og:title" content="RubyOS - Peak Performance. Absolute Control.">
+    <meta property="og:description" content="A masterpiece built on Windows 10 LTSC 2021, engineered to revive older PCs and maximize speed.">
+    <meta property="og:image" content="https://YOUR-USERNAME.github.io/YOUR-REPOSITORY/assets/hero-background.jpg">
+    <meta property="og:url" content="https://YOUR-USERNAME.github.io/YOUR-REPOSITORY/">
+    <meta property="og:type" content="website">
+    <!-- =================================================================== -->
+
+    <link rel="icon" href="assets/logo.png" type="image/png">
     <script src="https://cdn.tailwindcss.com"></script>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -57,7 +74,7 @@
 
     <header class="fixed top-0 left-0 right-0 p-4 z-50">
         <nav class="container mx-auto flex justify-between items-center glass-card rounded-full px-4 md:px-6 py-3">
-            <a href="#" class="flex items-center gap-3" id="logo-trigger"><img src="assets/logo.jpg" alt="RubyOS Logo" class="w-8 h-8"/><h1 class="text-xl font-bold tracking-wider">Ruby<span class="gradient-text">OS</span></h1></a>
+            <a href="#" class="flex items-center gap-3" id="logo-trigger"><img src="assets/logo.png" alt="RubyOS Logo" class="w-8 h-8"/><h1 class="text-xl font-bold tracking-wider">Ruby<span class="gradient-text">OS</span></h1></a>
             <div class="hidden md:flex items-center gap-6"><a href="#philosophy" class="text-sm font-medium text-slate-300 hover:text-white transition-colors">Philosophy</a><a href="#team" class="text-sm font-medium text-slate-300 hover:text-white transition-colors">Team</a><a href="#requirements" class="text-sm font-medium text-slate-300 hover:text-white transition-colors">Requirements</a><a href="#download" class="gradient-button text-white font-bold py-2 px-5 rounded-full text-sm">Download</a></div>
             <div class="md:hidden"><button id="menu-btn" class="p-2 -mr-2"><svg id="menu-open-icon" class="h-6 w-6" stroke="currentColor" fill="none" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"></path></svg><svg id="menu-close-icon" class="h-6 w-6 hidden" stroke="currentColor" fill="none" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path></svg></button></div>
         </nav>
@@ -67,10 +84,7 @@
     <main class="relative z-10">
         <section class="min-h-screen flex flex-col items-center justify-center text-center px-4 overflow-hidden">
             <div class="scroll-reveal"><h1 class="text-5xl md:text-7xl font-black mb-4 leading-tight tracking-tighter">Revive Your Hardware. <br>Unleash <span class="gradient-text">Performance.</span></h1><p class="max-w-3xl mx-auto text-lg md:text-xl text-slate-300 mb-8">This is RubyOS. A masterpiece built on Windows 10 LTSC 2021, engineered to breathe new life into older PCs and maximize speed for modern machines.</p>
-                <div id="countdown-wrapper" class="my-10">
-                    <h3 class="text-lg font-semibold text-slate-300 mb-4 tracking-wider">Next Build Drops In:</h3>
-                    <div id="countdown-container" class="flex justify-center gap-4 md:gap-8"><div class="glass-card rounded-xl p-4 w-24 text-center"><span id="days" class="text-4xl font-bold">--</span><p class="text-xs text-slate-400">Days</p></div><div class="glass-card rounded-xl p-4 w-24 text-center"><span id="hours" class="text-4xl font-bold">--</span><p class="text-xs text-slate-400">Hours</p></div><div class="glass-card rounded-xl p-4 w-24 text-center"><span id="minutes" class="text-4xl font-bold">--</span><p class="text-xs text-slate-400">Minutes</p></div><div class="glass-card rounded-xl p-4 w-24 text-center"><span id="seconds" class="text-4xl font-bold">--</span><p class="text-xs text-slate-400">Seconds</p></div></div>
-                </div>
+                <div id="countdown-wrapper" class="my-10"><h3 class="text-lg font-semibold text-slate-300 mb-4 tracking-wider">Next Build Drops In:</h3><div id="countdown-container" class="flex justify-center gap-4 md:gap-8"><div class="glass-card rounded-xl p-4 w-24 text-center"><span id="days" class="text-4xl font-bold">--</span><p class="text-xs text-slate-400">Days</p></div><div class="glass-card rounded-xl p-4 w-24 text-center"><span id="hours" class="text-4xl font-bold">--</span><p class="text-xs text-slate-400">Hours</p></div><div class="glass-card rounded-xl p-4 w-24 text-center"><span id="minutes" class="text-4xl font-bold">--</span><p class="text-xs text-slate-400">Minutes</p></div><div class="glass-card rounded-xl p-4 w-24 text-center"><span id="seconds" class="text-4xl font-bold">--</span><p class="text-xs text-slate-400">Seconds</p></div></div></div>
                 <a href="#download" class="gradient-button text-white font-bold py-4 px-10 rounded-full hover:shadow-lg hover:shadow-purple-500/20">Explore Builds</a>
             </div>
         </section>
@@ -87,7 +101,7 @@
         
         <section id="team" class="py-20 sm:py-32 container mx-auto px-4">
             <div class="scroll-reveal section-title"><h2>Meet the Team</h2><p>The architects and forgers behind the RubyOS project.</p></div>
-            <div class="scroll-reveal max-w-6xl mx-auto grid grid-cols-1 md:grid-cols-3 gap-8 text-center"><div class="glass-card rounded-2xl p-8"><img src="assets/avatar-winmastt.jpg" alt="winmastt avatar" class="w-24 h-24 rounded-full mx-auto mb-4 border-2 border-purple-500/50 object-cover"><h3 class="text-2xl font-bold">winmastt</h3><p class="text-sm gradient-text font-semibold mb-2">The Creator</p><p class="text-slate-400 text-sm">The main developer and creator of RubyOS and the idea of it.</p></div><div class="glass-card rounded-2xl p-8"><img src="assets/avatar-alexsovi.png" alt="alexsovi avatar" class="w-24 h-24 rounded-full mx-auto mb-4 border-2 border-slate-600 object-cover"><h3 class="text-2xl font-bold">alexsovi</h3><p class="text-sm text-slate-400 font-semibold mb-2">The Tester</p><p class="text-slate-400 text-sm">First ever to join the team, our dedicated bug hunter.</p></div><div class="glass-card rounded-2xl p-8"><img src="assets/avatar-htcoder.jpg" alt="HTCoder avatar" class="w-24 h-24 rounded-full mx-auto mb-4 border-2 border-slate-600 object-cover"><h3 class="text-2xl font-bold">Gemini (HTCoder)</h3><p class="text-sm text-slate-400 font-semibold mb-2">The Forger</p><p class="text-slate-400 text-sm">Made the site and some scripts for the system.</p></div></div>
+            <div class="scroll-reveal max-w-6xl mx-auto grid grid-cols-1 md:grid-cols-3 gap-8 text-center"><div class="glass-card rounded-2xl p-8"><img src="assets/avatar-winmastt.png" alt="winmastt avatar" class="w-24 h-24 rounded-full mx-auto mb-4 border-2 border-purple-500/50 object-cover"><h3 class="text-2xl font-bold">winmastt</h3><p class="text-sm gradient-text font-semibold mb-2">The Creator</p><p class="text-slate-400 text-sm">The main developer and creator of RubyOS and the idea of it.</p></div><div class="glass-card rounded-2xl p-8"><img src="assets/avatar-alexsovi.png" alt="alexsovi avatar" class="w-24 h-24 rounded-full mx-auto mb-4 border-2 border-slate-600 object-cover"><h3 class="text-2xl font-bold">alexsovi</h3><p class="text-sm text-slate-400 font-semibold mb-2">The Tester</p><p class="text-slate-400 text-sm">First ever to join the team, our dedicated bug hunter.</p></div><div class="glass-card rounded-2xl p-8"><img src="assets/avatar-htcoder.png" alt="HTCoder avatar" class="w-24 h-24 rounded-full mx-auto mb-4 border-2 border-slate-600 object-cover"><h3 class="text-2xl font-bold">Gemini (HTCoder)</h3><p class="text-sm text-slate-400 font-semibold mb-2">The Forger</p><p class="text-slate-400 text-sm">Made the site and some scripts for the system.</p></div></div>
         </section>
 
         <section id="requirements" class="py-20 sm:py-32 container mx-auto px-4">
@@ -134,25 +148,29 @@
             document.querySelectorAll('.easter-egg-modal').forEach(modal => modal.addEventListener('click', (e) => { if (e.target === modal) { hideModal(modal); } }));
             document.addEventListener('keyup', (e) => { if (e.key === 'Escape') { hideModal(secret1Modal); hideModal(secret2Modal); } });
 
-            // MAXX Quality Universal Countdown Logic
+            // MAXX Quality Universal Daily Countdown Logic
             const countdownWrapper = document.getElementById('countdown-wrapper');
             let countdownInterval;
 
             const startCountdown = (now) => {
                 let targetTime = new Date(now);
-                targetTime.setUTCHours(14, 30, 0, 0); // 17:30 in UTC+3 is 14:30 UTC
-
+                // Set target to 17:30 UTC+3, which is 14:30 UTC
+                targetTime.setUTCHours(14, 30, 0, 0); 
                 if (now > targetTime) {
                     targetTime.setUTCDate(targetTime.getUTCDate() + 1);
                 }
+                const pageLoadTime = new Date();
+                const initialLocalDistance = new Date() - pageLoadTime;
 
                 countdownInterval = setInterval(() => {
-                    const currentTime = new Date(now.getTime() + (new Date().getTime() - pageLoadTime)); // Emulate ticking
+                    const currentLocalTime = new Date();
+                    const elapsed = currentLocalTime - pageLoadTime;
+                    const currentTime = new Date(now.getTime() + elapsed);
                     const distance = targetTime - currentTime;
 
                     if (distance < 0) {
                         clearInterval(countdownInterval);
-                        document.getElementById('countdown-container').innerHTML = `<p class="text-3xl font-bold gradient-text">BUILDS ARE LIVE!</p>`;
+                        document.getElementById('countdown-wrapper').innerHTML = `<p class="text-3xl font-bold gradient-text">BUILDS ARE LIVE!</p>`;
                         return;
                     }
 
@@ -168,11 +186,9 @@
                 }, 1000);
             };
 
-            let pageLoadTime = new Date(); // Capture local time on page load
             fetch('https://worldtimeapi.org/api/ip')
                 .then(response => response.json())
                 .then(data => {
-                    pageLoadTime = new Date(); // Recapture right before starting for accuracy
                     const now = new Date(data.utc_datetime);
                     startCountdown(now);
                 })
