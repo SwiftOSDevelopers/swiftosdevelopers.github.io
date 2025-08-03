@@ -43,7 +43,8 @@
             --accent-light: #A9B7C6; 
             --accent-dark: #6C7A89;
         }
-        body { font-family: 'Inter', sans-serif; background-color: var(--bg-color); color: var(--text-primary); }
+        body { font-family: 'Inter', sans-serif; background-color: var(--bg-color); color: var(--text-primary); transition: background-color 0.3s ease; }
+        body.overflow-hidden { overflow: hidden; }
         .site-background { background-image: linear-gradient(rgba(8, 9, 12, 0.6), rgba(8, 9, 12, 0.9)), url('assets/swiftos-bg.jpg'); background-size: cover; background-position: center; position: fixed; top: 0; left: 0; right: 0; bottom: 0; z-index: -3; }
         .aurora-bg { position: fixed; top: 0; left: 0; right: 0; bottom: 0; width: 100%; height: 100%; z-index: -2; overflow: hidden; }
         .aurora-shape { position: absolute; border-radius: 50%; filter: blur(140px); opacity: 0.6; }
@@ -66,10 +67,14 @@
         .section-title h2 { font-size: 2.25rem; line-height: 2.5rem; }
         @media (min-width: 768px) { .section-title h2 { font-size: 3rem; line-height: 1; } }
         .section-title p { margin-top: 1rem; font-size: 1.125rem; line-height: 1.75rem; color: var(--text-secondary); max-width: 42rem; margin-left: auto; margin-right: auto; }
+        header.glass-card { border-left: 0; border-right: 0; border-top: 0; border-radius: 0; }
+        .mobile-menu { transition: opacity 0.3s ease; }
+        .mobile-menu.hidden { pointer-events: none; opacity: 0; }
         .easter-egg-modal { transition: opacity 0.3s ease-in-out; }
+        .easter-egg-modal.hidden { pointer-events: none; opacity: 0; }
         .easter-egg-modal .glass-card { transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1); }
         .easter-egg-modal.hidden .glass-card { transform: scale(0.95); opacity: 0; }
-        #easter-egg-trigger { cursor: pointer; text-decoration: underline; text-decoration-style: dotted; }
+        #easter-egg-trigger { text-decoration: underline; text-decoration-style: dotted; }
     </style>
     <!-- === ВАЖНЫЙ SEO-ТЕГ ВОЗВРАЩЕН НА МЕСТО === -->
  <meta name="google-site-verification" content="b24GTvphvuIEoCNhAIFhaKmLFW9iajGoywVL9OpAJ4Q" />   
@@ -79,14 +84,24 @@
     <div class="aurora-bg"></div>
     <div class="site-background"></div>
 
-    <header class="fixed top-0 left-0 right-0 p-4 z-50">
-        <nav class="container mx-auto flex justify-between items-center glass-card rounded-full px-4 md:px-6 py-3">
+    <header class="fixed top-0 left-0 right-0 z-50 glass-card">
+        <nav class="container mx-auto flex justify-between items-center px-4 md:px-6 py-3">
             <a href="#" class="flex items-center gap-3" id="logo-trigger"><img src="assets/swiftos-logo.png" alt="SwiftOS Logo" class="w-8 h-8"/><h1 class="text-xl font-bold tracking-wider">Swift<span class="text-slate-400">OS</span></h1></a>
             <div class="hidden md:flex items-center gap-6"><a href="#philosophy" class="text-sm font-medium text-slate-300 hover:text-white transition-colors">Philosophy</a><a href="#team" class="text-sm font-medium text-slate-300 hover:text-white transition-colors">Team</a><a href="#requirements" class="text-sm font-medium text-slate-300 hover:text-white transition-colors">Requirements</a><a href="#download" class="gradient-button text-black font-bold py-2 px-5 rounded-full text-sm">Download</a></div>
-            <div class="md:hidden"><button id="menu-btn" class="p-2 -mr-2"><svg id="menu-open-icon" class="h-6 w-6" stroke="currentColor" fill="none" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"></path></svg><svg id="menu-close-icon" class="h-6 w-6 hidden" stroke="currentColor" fill="none" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path></svg></button></div>
+            <div class="md:hidden"><button id="menu-btn" aria-label="Open menu" class="p-2 -mr-2"><svg id="menu-open-icon" class="h-6 w-6" stroke="currentColor" fill="none" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"></path></svg><svg id="menu-close-icon" class="h-6 w-6 hidden" stroke="currentColor" fill="none" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path></svg></button></div>
         </nav>
     </header>
-    <div id="mobile-menu" class="hidden md:hidden fixed inset-0 z-40"><div class="absolute inset-0 glass-card"></div><div class="relative z-50 h-full flex flex-col items-center justify-center text-center gap-8"><a href="#philosophy" class="mobile-menu-link text-2xl font-bold">Philosophy</a><a href="#team" class="mobile-menu-link text-2xl font-bold">Team</a><a href="#requirements" class="mobile-menu-link text-2xl font-bold">Requirements</a><a href="#download" class="mobile-menu-link gradient-button text-black font-bold py-4 px-10 rounded-full text-lg">Download</a></div></div>
+    
+    <div id="mobile-menu" class="mobile-menu hidden fixed inset-0 z-40 md:hidden">
+        <div class="absolute inset-0 bg-black/30 backdrop-blur-sm" id="mobile-menu-overlay"></div>
+        <div class="relative flex flex-col items-center justify-center h-full text-center gap-8 p-4">
+            <a href="#philosophy" class="mobile-menu-link text-2xl font-bold">Philosophy</a>
+            <a href="#team" class="mobile-menu-link text-2xl font-bold">Team</a>
+            <a href="#requirements" class="mobile-menu-link text-2xl font-bold">Requirements</a>
+            <a href="#download" class="mobile-menu-link gradient-button text-black font-bold py-4 px-10 rounded-full text-lg">Download</a>
+        </div>
+    </div>
+
 
     <main class="relative z-10">
         <section class="min-h-screen flex flex-col items-center justify-center text-center px-4 overflow-hidden">
@@ -121,7 +136,7 @@
             <div class="scroll-reveal section-title"><h2>Downloads Hub</h2><p>Choose your ideal build. All are forged from the same soul of performance and privacy.</p></div>
             <div class="scroll-reveal grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 max-w-7xl mx-auto">
                 
-                <div class="glass-card rounded-2xl p-8 flex flex-col border-2 border-gray-600"><div class="flex items-center gap-4 mb-4"><svg class="w-10 h-10 text-slate-300 flex-shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" /></svg><div><h3 class="text-2xl font-bold">LTSC 2021 (Updates)</h3><p class="text-sm text-slate-300 font-semibold">The Daily Driver</p></div></div><p class="text-slate-400 text-sm flex-grow">The perfect balance based on Windows 10 LTSC 2021. Get the optimized SwiftOS core with ongoing security updates. Ideal for daily driving, gaming, and productivity.</p><div class="text-xs text-slate-500 mt-6 mb-4"><p>ISO Size: ~4.5 GB</p><p>Installed Size: ~16 GB</p></div><a href="#" class="gradient-button text-black font-bold py-3 px-6 rounded-full w-full text-center mt-auto">Download</a></div>
+                <div class="glass-card rounded-2xl p-8 flex flex-col border-2 border-gray-600"><div class="flex items-center gap-4 mb-4"><svg class="w-10 h-10 text-slate-300 flex-shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" /></svg><div><h3 class="text-2xl font-bold">LTSC 2021 (Updates)</h3><p class="text-sm text-slate-300 font-semibold">The Daily Driver</p></div></div><p class="text-slate-400 text-sm flex-grow">The perfect balance based on Windows 10 LTSC 2021. Get the optimized SwiftOS core with ongoing security updates. Ideal for daily driving, gaming, and productivity.</p><div class="text-xs text-slate-500 mt-6 mb-4"><p>ISO Size: ~4.5 GB</p><p>Installed Size: ~16 GB</p></div><a href="https://mega.nz/file/Qd5hzKwB#COyEAOveduq3r1ucru2MhauexA6ZCxK1N_QBKXeoOQ8" target="_blank" rel="noopener noreferrer" class="gradient-button text-black font-bold py-3 px-6 rounded-full w-full text-center mt-auto">Download</a></div>
                 
                 <div class="glass-card rounded-2xl p-8 flex flex-col">
                     <div class="flex items-center gap-4 mb-4">
@@ -141,7 +156,7 @@
                     <button disabled class="border-2 border-slate-700 text-slate-500 font-bold py-3 px-6 rounded-full w-full text-center mt-auto cursor-not-allowed">Coming soon!</button>
                 </div>
 
-                <div class="glass-card rounded-2xl p-8 flex flex-col"><div class="flex items-center gap-4 mb-4"><svg class="w-10 h-10 text-slate-400 flex-shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z" /></svg><div><h3 class="text-2xl font-bold">LTSC 2021 (No Updates)</h3><p class="text-sm text-slate-400 font-semibold">The Appliance</p></div></div><p class="text-slate-400 text-sm flex-grow">Maximum predictability. A rock-solid, 'set it and forget it' build with all updates disabled. Perfect for kiosks, HTPCs, or specific production environments.</p><div class="text-xs text-slate-500 mt-6 mb-4"><p>ISO Size: ~4.5 GB</p><p>Installed Size: ~16 GB</p></div><a href="https://mega.nz/file/VcIAjQrI#WpmPfqT1t-zTKiie9og78fklZBatz3-8aSwyTzHZoUY" target="_blank" rel="noopener noreferrer" class="border-2 border-slate-600 text-slate-300 hover:bg-slate-800 hover:border-slate-500 transition-colors font-bold py-3 px-6 rounded-full w-full text-center mt-auto">Download</a></div>
+                <div class="glass-card rounded-2xl p-8 flex flex-col"><div class="flex items-center gap-4 mb-4"><svg class="w-10 h-10 text-slate-400 flex-shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z" /></svg><div><h3 class="text-2xl font-bold">LTSC 2021 (No Updates)</h3><p class="text-sm text-slate-400 font-semibold">The Appliance</p></div></div><p class="text-slate-400 text-sm flex-grow">Maximum predictability. A rock-solid, 'set it and forget it' build with all updates disabled. Perfect for kiosks, HTPCs, or specific production environments.</p><div class="text-xs text-slate-500 mt-6 mb-4"><p>ISO Size: ~4.5 GB</p><p>Installed Size: ~16 GB</p></div><button class="border-2 border-slate-600 text-slate-300 hover:bg-slate-800 hover:border-slate-500 transition-colors font-bold py-3 px-6 rounded-full w-full text-center mt-auto">Download</button></div>
             </div>
         </section>
         
@@ -155,29 +170,110 @@
         <div class="container mx-auto px-4 text-center text-slate-500"><p>© 2024 SwiftOS Project. Forged with soul for enthusiasts.</p><p class="text-xs mt-2">There are secrets hidden in the <span id="easter-egg-trigger" class="font-semibold text-slate-400 hover:text-white cursor-pointer">code.</span></p></div>
     </footer>
     
-    <div id="secret1-modal" class="easter-egg-modal hidden fixed inset-0 z-[100] flex items-center justify-center p-4 bg-black/50 backdrop-blur-sm"><div class="glass-card rounded-2xl p-8 text-center max-w-md w-full relative"><svg class="w-16 h-16 mx-auto mb-4 text-slate-400" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M20 21v-2a4 4 0 00-4-4H8a4 4 0 00-4 4v2"/><circle cx="12" cy="7" r="4"/></svg><p class="text-lg font-semibold">You weren't supposed to see that.</p><p class="text-slate-400">This is an easter egg, keep it quiet here!!</p><button class="modal-close-btn mt-6 border-2 border-slate-600 text-slate-300 hover:bg-slate-700 transition-colors font-bold py-2 px-6 rounded-full text-sm">Close</button></div></div>
-    <div id="secret2-modal" class="easter-egg-modal hidden fixed inset-0 z-[100] flex items-center justify-center p-4 bg-black/50 backdrop-blur-sm"><div class="glass-card rounded-2xl p-8 text-center max-w-md w-full relative"><svg class="w-16 h-16 mx-auto mb-4 text-slate-400" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M14.5 12.5L12 15l-2.5-2.5M12 3v13.5" /><path d="M12 3a2.5 2.5 0 012.5 2.5c0 .9-.5 1.5-1 2S12 8 12 8s-.5-.5-1.5-1-1-.9-1-2A2.5 2.5 0 0112 3z" /><path d="M8.5 12.5L12 9l3.5 3.5" /><path d="M12 21a2.5 2.5 0 01-2.5-2.5c0-.9.5-1.5 1-2s1.5.5 1.5.5.5.5 1.5 1 1 1.1 1 2A2.5 2.5 0 0112 21z" /></svg><p class="text-lg font-semibold">The Architect's Signature</p><p class="text-slate-400">This project was forged with soul by the SwiftOS team.</p><button class="modal-close-btn mt-6 border-2 border-slate-600 text-slate-300 hover:bg-slate-700 transition-colors font-bold py-2 px-6 rounded-full text-sm">Close</button></div></div>
+    <div id="secret1-modal" class="easter-egg-modal hidden fixed inset-0 z-[100] flex items-center justify-center p-4 bg-black/50"><div class="glass-card rounded-2xl p-8 text-center max-w-md w-full relative"><svg class="w-16 h-16 mx-auto mb-4 text-slate-400" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M20 21v-2a4 4 0 00-4-4H8a4 4 0 00-4 4v2"/><circle cx="12" cy="7" r="4"/></svg><p class="text-lg font-semibold">You weren't supposed to see that.</p><p class="text-slate-400">This is an easter egg, keep it quiet here!!</p><button class="modal-close-btn mt-6 border-2 border-slate-600 text-slate-300 hover:bg-slate-700 transition-colors font-bold py-2 px-6 rounded-full text-sm">Close</button></div></div>
+    <div id="secret2-modal" class="easter-egg-modal hidden fixed inset-0 z-[100] flex items-center justify-center p-4 bg-black/50"><div class="glass-card rounded-2xl p-8 text-center max-w-md w-full relative"><svg class="w-16 h-16 mx-auto mb-4 text-slate-400" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M14.5 12.5L12 15l-2.5-2.5M12 3v13.5" /><path d="M12 3a2.5 2.5 0 012.5 2.5c0 .9-.5 1.5-1 2S12 8 12 8s-.5-.5-1.5-1-1-.9-1-2A2.5 2.5 0 0112 3z" /><path d="M8.5 12.5L12 9l3.5 3.5" /><path d="M12 21a2.5 2.5 0 01-2.5-2.5c0-.9.5-1.5 1-2s1.5.5 1.5.5.5.5 1.5 1 1 1.1 1 2A2.5 2.5 0 0112 21z" /></svg><p class="text-lg font-semibold">The Architect's Signature</p><p class="text-slate-400">This project was forged with soul by the SwiftOS team.</p><button class="modal-close-btn mt-6 border-2 border-slate-600 text-slate-300 hover:bg-slate-700 transition-colors font-bold py-2 px-6 rounded-full text-sm">Close</button></div></div>
 
     <script>
         document.addEventListener('DOMContentLoaded', () => {
-            const menuBtn = document.getElementById('menu-btn'); const mobileMenu = document.getElementById('mobile-menu'); const openIcon = document.getElementById('menu-open-icon'); const closeIcon = document.getElementById('menu-close-icon');
-            menuBtn.addEventListener('click', () => { const isHidden = mobileMenu.classList.contains('hidden'); mobileMenu.classList.toggle('hidden', !isHidden); openIcon.classList.toggle('hidden', !isHidden); closeIcon.classList.toggle('hidden', isHidden); document.body.style.overflow = isHidden ? 'hidden' : ''; });
-            document.querySelectorAll('.mobile-menu-link').forEach(link => { link.addEventListener('click', () => { mobileMenu.classList.add('hidden'); openIcon.classList.remove('hidden'); closeIcon.classList.add('hidden'); document.body.style.overflow = ''; }); });
+            const body = document.body;
+            const menuBtn = document.getElementById('menu-btn'); 
+            const mobileMenu = document.getElementById('mobile-menu'); 
+            const mobileMenuOverlay = document.getElementById('mobile-menu-overlay');
+            const openIcon = document.getElementById('menu-open-icon'); 
+            const closeIcon = document.getElementById('menu-close-icon');
+
+            // --- Mobile Menu Toggle ---
+            const toggleMenu = () => {
+                mobileMenu.classList.toggle('hidden');
+                body.classList.toggle('overflow-hidden');
+                // Correctly toggle icons
+                openIcon.classList.toggle('hidden');
+                closeIcon.classList.toggle('hidden');
+            };
+
+            menuBtn.addEventListener('click', toggleMenu);
+            mobileMenuOverlay.addEventListener('click', toggleMenu);
+            document.querySelectorAll('.mobile-menu-link').forEach(link => {
+                link.addEventListener('click', () => {
+                    if (!mobileMenu.classList.contains('hidden')) {
+                        toggleMenu();
+                    }
+                });
+            });
+
+            // --- Scroll Animations ---
             const scrollElements = document.querySelectorAll('.scroll-reveal');
-            const elementInView = (el, dividend = 1) => el.getBoundingClientRect().top <= (window.innerHeight || document.documentElement.clientHeight) / dividend;
-            const displayScrollElement = (element) => element.classList.add('visible');
-            const handleScrollAnimation = () => scrollElements.forEach((el) => { if (elementInView(el, 1.1)) displayScrollElement(el); });
-            window.addEventListener('scroll', handleScrollAnimation); handleScrollAnimation();
-            document.querySelectorAll('.faq-item').forEach(item => { item.addEventListener('toggle', (event) => { const icon = item.querySelector('summary span:last-child'); if (event.target.open) { icon.style.transform = 'rotate(45deg)'; } else { icon.style.transform = 'rotate(0deg)'; } }); });
-            const secret1Modal = document.getElementById('secret1-modal'); const secret2Modal = document.getElementById('secret2-modal');
-            const showModal = (modal) => { modal.classList.remove('hidden'); document.body.style.overflow = 'hidden'; };
-            const hideModal = (modal) => { modal.classList.add('hidden'); document.body.style.overflow = ''; };
-            document.getElementById('easter-egg-trigger').addEventListener('click', () => showModal(secret1Modal));
-            let logoClickCount = 0; let logoClickTimer;
-            document.getElementById('logo-trigger').addEventListener('click', () => { logoClickCount++; clearTimeout(logoClickTimer); logoClickTimer = setTimeout(() => { logoClickCount = 0; }, 1500); if (logoClickCount >= 5) { showModal(secret2Modal); logoClickCount = 0; } });
-            document.querySelectorAll('.modal-close-btn').forEach(btn => btn.addEventListener('click', () => { hideModal(secret1Modal); hideModal(secret2Modal); }));
-            document.querySelectorAll('.easter-egg-modal').forEach(modal => modal.addEventListener('click', (e) => { if (e.target === modal) { hideModal(modal); } }));
-            document.addEventListener('keyup', (e) => { if (e.key === 'Escape') { hideModal(secret1Modal); hideModal(secret2Modal); } });
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.classList.add('visible');
+                    }
+                });
+            }, { threshold: 0.1 });
+            scrollElements.forEach(el => observer.observe(el));
+
+            // --- FAQ Accordion ---
+            document.querySelectorAll('.faq-item').forEach(item => {
+                item.addEventListener('toggle', (event) => {
+                    const icon = item.querySelector('summary span:last-child');
+                    icon.style.transform = event.target.open ? 'rotate(45deg)' : 'rotate(0deg)';
+                });
+            });
+
+            // --- Modal Handling ---
+            const modals = document.querySelectorAll('.easter-egg-modal');
+            const showModal = (modal) => {
+                if (!modal) return;
+                modal.classList.remove('hidden');
+                if (!body.classList.contains('overflow-hidden')) {
+                    body.classList.add('overflow-hidden');
+                }
+            };
+            const hideModal = (modal) => {
+                if (!modal) return;
+                modal.classList.add('hidden');
+                if (Array.from(modals).every(m => m.classList.contains('hidden')) && mobileMenu.classList.contains('hidden')) {
+                    body.classList.remove('overflow-hidden');
+                }
+            };
+            
+            const secret1Modal = document.getElementById('secret1-modal');
+            const secret2Modal = document.getElementById('secret2-modal');
+            document.getElementById('easter-egg-trigger').addEventListener('click', (e) => {
+                e.preventDefault();
+                showModal(secret1Modal);
+            });
+
+            let logoClickCount = 0;
+            let logoClickTimer;
+            document.getElementById('logo-trigger').addEventListener('click', (e) => {
+                e.preventDefault();
+                logoClickCount++;
+                clearTimeout(logoClickTimer);
+                logoClickTimer = setTimeout(() => { logoClickCount = 0; }, 1500);
+                if (logoClickCount >= 5) {
+                    showModal(secret2Modal);
+                    logoClickCount = 0;
+                }
+            });
+
+            modals.forEach(modal => {
+                modal.addEventListener('click', (e) => {
+                    if (e.target === modal || e.target.classList.contains('modal-close-btn')) {
+                         e.preventDefault();
+                        hideModal(modal);
+                    }
+                });
+            });
+
+            document.addEventListener('keyup', (e) => {
+                if (e.key === 'Escape') {
+                    if (!mobileMenu.classList.contains('hidden')) {
+                        toggleMenu();
+                    }
+                    modals.forEach(hideModal);
+                }
+            });
         });
     </script>
 </body>
